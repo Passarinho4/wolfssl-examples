@@ -38,6 +38,8 @@
 const char caCertLoc[] = "../certs/ca-cert.pem";
 const char servCertLoc[] = "../certs/server-cert.pem";
 const char servKeyLoc[] = "../certs/server-key.pem";
+const char cliCertLoc[] = "./client-mtls-cert.pem";
+const char cliKeyLoc[] = "./client-mtls-key.pem";
 
 static inline void showConnInfo(WOLFSSL* ssl) {
     printf("New connection established using %s %s\n",
