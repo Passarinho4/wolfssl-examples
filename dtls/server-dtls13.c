@@ -89,6 +89,8 @@ int main(int argc, char** argv)
         fprintf(stderr, "Error loading %s, please check the file.\n", caCertLoc);
         goto cleanup;
     }
+    wolfSSL_CTX_set_verify(ctx,
+            WOLFSSL_VERIFY_PEER | WOLFSSL_VERIFY_FAIL_IF_NO_PEER_CERT, NULL);
     /* Load server certificates */
     if (wolfSSL_CTX_use_certificate_file(ctx, servCertLoc,
             WOLFSSL_FILETYPE_PEM) != WOLFSSL_SUCCESS) {

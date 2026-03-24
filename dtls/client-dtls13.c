@@ -91,6 +91,17 @@ int main (int argc, char** argv)
         fprintf(stderr, "Error loading %s, please check the file.\n", caCertLoc);
         goto cleanup;
     }
+    if (wolfSSL_CTX_use_certificate_file(ctx, cliCertLoc, WOLFSSL_FILETYPE_PEM)
+            != WOLFSSL_SUCCESS) {
+        fprintf(stderr, "Error loading %s, please check the file.\n", cliCertLoc);
+        goto cleanup;
+    }
+    if (wolfSSL_CTX_use_PrivateKey_file(ctx, cliKeyLoc, WOLFSSL_FILETYPE_PEM)
+            != WOLFSSL_SUCCESS) {
+        fprintf(stderr, "Error loading %s, please check the file.\n", cliKeyLoc);
+        goto cleanup;
+    }
+    wolfSSL_CTX_set_verify(ctx, WOLFSSL_VERIFY_PEER, NULL);
 
     /* Assign ssl variable */
     ssl = wolfSSL_new(ctx);
@@ -195,4 +206,3 @@ cleanup:
 
     return exitVal;
 }
-
